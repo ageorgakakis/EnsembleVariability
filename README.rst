@@ -1,8 +1,15 @@
-# EnsembleVariability
+.. role:: raw-math(raw)
+    :format: latex html
+
+	     # EnsembleVariability
 
 
 This project provides routines to model the ensemble excess variance of AGN using as input emprical relations and quantities. These inlcude the stellar mass function of galaxies, the specific accretion-rate distribution of AGN, the black-hole mass vs stellar-mass scaling relation and the Power Spectrum Density of the AGN flux variations. The flow-chart below shows how these components are combined to make predictions on the ensemble excess variance of AGN populations.
 
 .. figure:: model.png
 
-A galaxy sample drawn from the stellar mass function at a given redshift (Panel 1) is seeded with AGN specific accretion-rates ( :math: \lambda \propto L_Χ/M_{\star}) using the corresponding observationally-derived probability distribution functions like the ones shown in Panel 2. This produces a sample of mock AGN (red dots of Panel 3), each of which has been assigned an X-ray luminosity, $L_X$, a host-galaxy stellar mass, $M_\star$ and a redshift, $z$. A parametrisation of the $M_\star-M_{BH}$ correlation (Panel 5) is used to assign black holes to mock AGN and hence, Eddington ratios $\lambda_{EDD} \propto L_Χ / M_{BH}$. The dependence of the AGN variability Power Spectrum Density (PSD; Panel 4) on Black Hole Mass and Eddington ratio is then used to assign variability to each mock AGN. It is then straightforward to determine for each AGN an excess variance ($\sigma_{NX}^2$) by integrating the corresponding PSD. The average excess variance of the population binned in luminosity and redshift intervals (Panel 6) can then be directly compared with observational results \protect\citep[blue points in Panel 6;][]{Paolillo2017}.
+A galaxy sample drawn from the stellar mass function at a given redshift (Panel 1) is seeded with AGN specific accretion-rates (
+
+:raw-math: $$ ( \lambda \propto L_Χ / M_{\star} ) $$
+
+       using the corresponding observationally-derived probability distribution functions like the ones shown in Panel 2. This produces a sample of mock AGN (red dots of Panel 3), each of which has been assigned an X-ray luminosity, $L_X$, a host-galaxy stellar mass, $M_\star$ and a redshift, $z$. A parametrisation of the $M_\star-M_{BH}$ correlation (Panel 5) is used to assign black holes to mock AGN and hence, Eddington ratios $\lambda_{EDD} \propto L_Χ / M_{BH}$. The dependence of the AGN variability Power Spectrum Density (PSD; Panel 4) on Black Hole Mass and Eddington ratio is then used to assign variability to each mock AGN. It is then straightforward to determine for each AGN an excess variance ($\sigma_{NX}^2$) by integrating the corresponding PSD. The average excess variance of the population binned in luminosity and redshift intervals (Panel 6) can then be directly compared with observational results \protect\citep[blue points in Panel 6;][]{Paolillo2017}.
