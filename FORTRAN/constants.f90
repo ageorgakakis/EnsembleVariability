@@ -1,6 +1,11 @@
 module constants
 
   implicit none
+
+  ! defines the structure of the 
+  ! that hold all the mock AGN catalogue
+  ! information and the corresponding
+  ! measurements.
   
   type :: SAMPLE
 
