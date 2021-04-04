@@ -8,7 +8,7 @@ The [MultiNest library](https://github.com/farhanferoz/MultiNest) is used for Ba
 
 Simarly for the fitsio library
 
-<export fitsio = /util/cfisio/lib>
+`<export fitsio = /util/cfisio/lib>`
 
 The compilation script using mpif90 could look like:
 
