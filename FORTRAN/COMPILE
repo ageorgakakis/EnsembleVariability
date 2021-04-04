@@ -1,13 +1,12 @@
 
 # directory where the MultiNest modules are
-export multimodules = /soft9/MultiNest/MultiNest_v3.12
+export multimodules = /util/MultiNest/MultiNest_v3.12
 
 # direct where the MultiNest library is 
-export multilib=/soft9/MultiNest/MultiNest_v3.12
+export multilib=/util/MultiNest/MultiNest_v3.12
 
 # directory where the fitsio libnrary is 
-export fitsiolib=/soft9/heasoft-6.28/x86_64-pc-linux-gnu-libc2.31/lib/
-
+export fitsiolib=/util/cfitsio/lib/
 
 mpif90 -lmpi -O3 -DMPI -fPIC -ffree-line-length-none -c random.f90
 mpif90 -lmpi -O3 -DMPI -fPIC -ffree-line-length-none -c priors.f90
