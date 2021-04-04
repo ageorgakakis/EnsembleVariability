@@ -1,12 +1,11 @@
-
 # directory where the MultiNest modules are
-export multimodules = /util/MultiNest/MultiNest_v3.12
+export multimod=/util/MultiNest/MultiNest
 
 # direct where the MultiNest library is 
-export multilib=/util/MultiNest/MultiNest_v3.12
+export multilib=/util/MultiNest/MultiNest
 
 # directory where the fitsio libnrary is 
-export fitsiolib=/util/cfitsio/lib/
+export fitsio=/util/cfitsio/lib/
 
 mpif90 -lmpi -O3 -DMPI -fPIC -ffree-line-length-none -c random.f90
 mpif90 -lmpi -O3 -DMPI -fPIC -ffree-line-length-none -c priors.f90
@@ -15,11 +14,11 @@ mpif90 -lmpi -O3 -DMPI -fPIC -ffree-line-length-none -c constants.f90
 mpif90 -lmpi -O3 -DMPI -fPIC -ffree-line-length-none -c data.f90 -lcfitsio
 mpif90 -lmpi -O3 -DMPI -fPIC -ffree-line-length-none -c model.f90
 mpif90 -lmpi -O3 -DMPI -fPIC -ffree-line-length-none -c recon.f90
-mpif90 -lmpi -O3 -DMPI -fPIC -ffree-line-length-none -c like.f90  -o like.o -I$multimodules 
-mpif90 -lmpi -O3 -DMPI -fPIC -ffree-line-length-none -O3 -DMPI -fPIC -ffree-line-length-none -lmpi_f90 -I$multimodules -c nestwrap.f90 -o nestwrap.o
+mpif90 -lmpi -O3 -DMPI -fPIC -ffree-line-length-none -c like.f90  -o like.o -I$multimod 
+mpif90 -lmpi -O3 -DMPI -fPIC -ffree-line-length-none -O3 -DMPI -fPIC -ffree-line-length-none -lmpi_f90 -I$multimod -c nestwrap.f90 -o nestwrap.o
 
-mpif90 -lmpi -O3 -DMPI -fPIC -ffree-line-length-none -c main.f90 -lcfitsio -I{$multimodules}
+mpif90 -lmpi -O3 -DMPI -fPIC -ffree-line-length-none -c main.f90 -lcfitsio -I$multimod
 
 # assumes that the MultiNest library is libnest3 at $multilib
-mpif90 -o a.out params.o priors.o constants.o data.o random.o model.o recon.o like.o nestwrap.o main.o -lmpi -O3 -DMPI -fPIC -ffree-line-length-none -I$multimodules -L/usr/lib -L$multilib -lnest3 -llapack -L$fitsiolib -lcfitsio
+mpif90 -o a.out params.o priors.o constants.o data.o random.o model.o recon.o like.o nestwrap.o main.o -lmpi -O3 -DMPI -fPIC -ffree-line-length-none -I$multimod -L/usr/lib -L$multilib -lnest3 -llapack -L$fitsiolib -lcfitsio
 
