@@ -1,3 +1,5 @@
+## Fortran90 Routines for Bayesian Inference
+
 Collection of FORTRAN90 routines to fit the empirical ensemble variance model to observations and infer model parameters in a Bayesian framework. The observational datapoints are the ensemble excess variance measurements in X-ray luminosity bins presented by [Paolillo et al. (2017; their Figure 5)](https://ui.adsabs.harvard.edu/abs/2017MNRAS.471.4398P/abstract). The empirical model components that are allowed to vary are (i) the Black-Hole Mass vs Stellar Mass relation and (ii) the variability Power Spectrum Density.
 
 The [MultiNest library](https://github.com/farhanferoz/MultiNest) is used for Bayesian Inference and should be installed. Additionally the fitsio routines are used to read in the data and the mock AGN catalogue. This library should also be present. For the compilation, the ditrectory of the MultiNest modules and library are defined, e.g.:
