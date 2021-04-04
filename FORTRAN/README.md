@@ -48,6 +48,18 @@ In `main.f90` there are 4 free parameters, two for the black-hole/stellar mass r
 
 where `ptype` is a table that defines the prior type: flat (`0`) within a given range of gaussian (`1`). In the case of a flat prior the tables `low` and `upper` list the lower and upper limit of the interval. In the case of a gaussian prior the `low` table entry corresponds to the mean and the `upper` table-entry to the sigma.
 
-For each data point of Figure 5 of [Paolillo et al. (2017)](https://ui.adsabs.harvard.edu/abs/2017MNRAS.471.4398P/abstract) there is a separate mock AGN catalogue selected in the same luminosity interval. These mock AGN catalogues are read in as fits binary tables in the lines:
+For each data point of Figure 5 of [Paolillo et al. (2017)](https://ui.adsabs.harvard.edu/abs/2017MNRAS.471.4398P/abstract) there is a separate mock AGN catalogue selected in the same luminosity interval. These mock AGN catalogues are read in as fits binary tables in the lines that look like:
 
 `call init_sample_file(MASTER_SAMPLE(1), "SAMPLE_Z1_0.4_Z2_4.0_DMIN_0.25_DMAX_6205.0_LGLX_42.5.fits")`
+
+the MultiNest bayesian inference routines are called in the lines:
+
+
+`  nest_pWrap=0
+  call nest_Sample`
+
+
+the following line reads the MCMC chains produced by MultiNest to determine the median of parameters and their uncertainties, estimate confidence intervals for e.g. the black-hole mass vs stellar mass relation, etc.  
+
+`call readchains()`
+
