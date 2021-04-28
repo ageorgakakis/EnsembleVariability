@@ -53,6 +53,8 @@ For each data point of Figure 5 of [Paolillo et al. (2017)](https://ui.adsabs.ha
 
 `call init_sample_file(MASTER_SAMPLE(1), "SAMPLE_Z1_0.4_Z2_4.0_DMIN_0.25_DMAX_6205.0_LGLX_42.5.fits")`
 
+The input files can be generated using the python script prepFORT.py
+
 the MultiNest bayesian inference routines are called in the lines:
 
 
