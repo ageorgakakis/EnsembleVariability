@@ -8,9 +8,41 @@ import os
 def GETLGLLBOL(LGLX):
     return numpy.log10(25.0) + LGLX 
 
+def GETLGLBOL_DURAS(LGLBOL):
+    '''
+    bolometric correction from 
+    https://ui.adsabs.harvard.edu/abs/2020A%26A...636A..73D/abstract
+    '''
+    a = 10.96;b=11.93;c=17.79
+     
+    K  = a * (1+ (LGLBOL/b)**c)
+
+    LGLX = LGLBOL - numpy.log10(K) +  numpy.log10(3.826e33)
+    LGLBOLCGS = LGLBOL +  numpy.log10(3.826e33)
+
+    return LGLX, LGLBOLCGS, K
+
 def GETLGLEDD(LGMBH, LGLX):
-    LGLBOL = GETLGLLBOL(LGLX)
+
+    '''
+    estimate the bolometric correction
+    and then the Eddington ratio. 
+    In the case of the Duras+21 KBOL
+    a look-up table is created and Lbol
+    values are interpolated from that. 
+
+    '''
+    # comment out for constand KBOL
+    #LGLBOL = GETLGLLBOL(LGLX)
+
+    # the following three lines are for the Duras+21
+    # KBOL
+    LGLBOL = numpy.arange(5,16,0.1)
+    LGLX1, LGLBOLCGS1, K = GETLGLBOL_DURAS(LGLBOL)            
+    LGLBOL =  numpy.interp(LGLX, LGLX1, LGLBOLCGS1)
+
     return LGLBOL - numpy.log10(1.26)- 38.0 - LGMBH
+
     
 def GETMBHMSTAR(LGM, Z, PARAM):
     A = PARAM[0]
