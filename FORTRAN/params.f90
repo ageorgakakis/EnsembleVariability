@@ -53,7 +53,7 @@ implicit none
       	parameter(nest_efr=0.3d0)
       
       	!root for saving posterior files
-      	character*100 nest_root
+      	character*1000 nest_root
 	parameter(nest_root='chains/f3d8p0XX-')
 	
 	!after how many iterations feedback is required & the output files should be updated

@@ -80,6 +80,7 @@ contains
   subroutine read_sample(mySample, filename)
 
     !use fitstools
+   
     
     implicit none
     TYPE(SAMPLE), intent(out) :: mySample
@@ -161,11 +162,33 @@ contains
     enddo
     
     mySAMPLE%RANDOM=0.0
+    
+    call cal_bol(mySample)
 
     call ftclos(unit, status)
     call ftfiou(unit, status) 
   end subroutine read_sample
 
+
+  subroutine cal_bol(mySample)
+
+    use bolometric
+
+    implicit none
+ 
+       
+    TYPE(SAMPLE) :: mySample
+    INTEGER I 
+
+    do I=1,SIZE(mySample%LGLX)
+       call findBOL(mySample%LGLX(I), GLBOL, mySample%LGLBOL(I))
+       !write(*,*) I, mySample%LGLX(I), mySample%LGLBOL(I)
+    enddo
+    !mySample%LGLBOL = log10(25.0) + mySample%LGLX
+    
+  end subroutine cal_bol
+
+ 
 
   
   subroutine init_obs(myObs, ZMIN, ZMAX, LGLXMIN, LGLXMAX, LGLXMEAN, DTMIN, DTMAX, SIGMA2, ESIGMA2)

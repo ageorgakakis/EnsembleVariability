@@ -1,11 +1,6 @@
 module constants
 
   implicit none
-
-  ! defines the structure of the 
-  ! that hold all the mock AGN catalogue
-  ! information and the corresponding
-  ! measurements.
   
   type :: SAMPLE
 
@@ -44,5 +39,15 @@ module constants
          
   end type OBS
   
+  type :: BOL
+
+     real, dimension(:), allocatable :: LGLBOL
+     real, dimension(:), allocatable :: LGLX 
+     real, dimension(:), allocatable :: K
+     real LGLMIN
+     real LGLMAX
+     real DLGL
+     integer N
+  end type BOL
 
 end module constants

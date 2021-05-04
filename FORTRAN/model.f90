@@ -86,18 +86,6 @@ contains
   end subroutine updateBH_sample
 
   
-  subroutine cal_bol(mySample)
-
-    implicit none
-    
-    TYPE(SAMPLE) :: mySample
-    
-    
-    mySample%LGLBOL = log10(25.0) + mySample%LGLX
-    
-  end subroutine cal_bol
-
-  
   subroutine cal_edd(mySample)
   
     implicit none
@@ -129,7 +117,6 @@ contains
     TYPE(SAMPLE) :: mySample
     real, optional :: alpha, beta
 
-    call cal_bol(mySample)
     call cal_edd(mySample)
     !call ModelPSD(mySample)
     call ModelPSD(mySample, alpha, beta)

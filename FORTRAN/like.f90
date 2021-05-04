@@ -50,6 +50,11 @@ subroutine slikelihood(Cube,slhood)
      
      slhood = slhood - 0.5 *  dble( (MASTER_SAMPLE(i)%sigma2 - ymodel )**2 / MASTER_SAMPLE(i)%esigma2 / MASTER_SAMPLE(i)%esigma2 )
 
+     !do j = 1, MASTER_SAMPLE(i)%N
+     !   write(*,*) j, MASTER_SAMPLE(i)%LGLX(j),MASTER_SAMPLE(i)%LGLBOL(j), MASTER_SAMPLE(i)%Z(j),MASTER_SAMPLE(i)%LGMBH(j),MASTER_SAMPLE(i)%SIG2(j)
+     !enddo
+     !write(*,*) i, param(1), param(2), ymodel,MASTER_SAMPLE(i)%sigma2, slhood
+
 
   enddo
 
