@@ -52,7 +52,7 @@ def select(data, ZMIN, ZMAX, LGLXMIN, LGLXMAX):
     variability sample. 
     '''
     
-    hdu = fits.open("DATA/CDF7Ms_selection.fits")
+    hdu = fits.open("../DATA/CDF7Ms_selection.fits")
     lgf=hdu[1].data['LGFLUX057']
     prob = hdu[1].data['PROB']
     hdu.close()
@@ -67,8 +67,9 @@ def select(data, ZMIN, ZMAX, LGLXMIN, LGLXMAX):
 
     return m1, weight
 
-D=openDATA(filename="DATA/data_Fig5_Paolillo+2017.dat")
-hdu = fits.open("DATA/SIM.fits")
+#D=openDATA(filename="../DATA/data_Fig5_Paolillo+2017.dat")
+D=openDATA(filename="../DATA/data_Fake.dat")
+hdu = fits.open("../DATA/SIM.fits")
 data=hdu[1].data
 data['LGLX'] = data['LGLX'] 
 columns= hdu[1].columns
@@ -112,6 +113,6 @@ for z in zlist:
         hdu=fits.BinTableHDU.from_columns(c, header=prihdr, name="SAMPLE")
         
         print("SAMPLE_Z1_{}_Z2_{}_DMIN_{}_DMAX_{}_LGLX_{}.fits".format(new['ZMIN'][i], new['ZMAX'][i], new['DTMINOBS'][i], new['DTMAXOBS'][i], int(new['LGLXMIN'][i]*10)/10.0))
-        hdu.writeto("DATA/SAMPLE_Z1_{}_Z2_{}_DMIN_{}_DMAX_{}_LGLX_{}.fits".format(new['ZMIN'][i], new['ZMAX'][i], new['DTMINOBS'][i], new['DTMAXOBS'][i], int(new['LGLXMIN'][i]*10)/10.0), overwrite=True)
+        hdu.writeto("../DATA/SAMPLE_Z1_{}_Z2_{}_DMIN_{}_DMAX_{}_LGLX_{}.fits".format(new['ZMIN'][i], new['ZMAX'][i], new['DTMINOBS'][i], new['DTMAXOBS'][i], int(new['LGLXMIN'][i]*10)/10.0), overwrite=True)
 
 
