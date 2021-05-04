@@ -142,13 +142,13 @@ subroutine readchains()
 !     write(91,*)MASTER_SAMPLE(j)%LGLXMIN,MASTER_SAMPLE(j)%LGLXMAX, MASTER_SAMPLE(j)%sigma2,  MASTER_SAMPLE(j)%esigma2
 !     write(92,*)MASTER_SAMPLE(j)%LGLXMIN,MASTER_SAMPLE(j)%LGLXMAX, (XSVQ(i,j), i=1,5)
 !  enddo
-!  deallocate(XSVQ)
+  deallocate(XSVQ)
 
 
   ! produces ensemble excess variance as a function of lumonsity
   ! takes long time to run!!!!
   ! output file fort.93
-  call init_sample_file(FSAMPLE, "SAMPLE_Z1_0.4_Z2_4.0_DMIN_0.25_DMAX_6205.0_LGLX_40.0.fits")
+  call init_sample_file(FSAMPLE, "../DATA/SAMPLE_Z1_0.4_Z2_4.0_DMIN_0.25_DMAX_6205.0_LGLX_40.0.fits")
   call normdev(FSAMPLE, 0.5)
   !write(*,*) "FSAMPLE SIZE:",FSAMPLE%N
   
