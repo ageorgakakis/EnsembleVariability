@@ -4,13 +4,13 @@ Collection of FORTRAN90 routines to fit the empirical ensemble variance model to
 
 The [MultiNest library](https://github.com/farhanferoz/MultiNest) is used for Bayesian Inference and should be installed. Additionally the fitsio routines are used to read in the data and the mock AGN catalogue. This library should also be present. For the compilation, the ditrectory of the MultiNest modules and library are defined, e.g.:
 
-`export multimod = /util/MultiNest/MultiNest`
+`export multimod = /utils/MultiNest`
 
-`export multilib = /util/MultiNest/MultiNest`
+`export multilib = /utils/MultiNest`
 
 Simarly for the fitsio library:
 
-`export fitsio = /util/cfisio/lib`
+`export fitsio = /utils/fisio/lib`
 
 The compilation script using `mpif90` compiler could look like:
 
@@ -21,6 +21,8 @@ The compilation script using `mpif90` compiler could look like:
 `mpif90 -lmpi -O3 -DMPI -fPIC -ffree-line-length-none -c params.f90`
 
 `mpif90 -lmpi -O3 -DMPI -fPIC -ffree-line-length-none -c constants.f90`
+
+`mpif90 -lmpi -O3 -DMPI -fPIC -ffree-line-length-none -c bol.f90`
 
 `mpif90 -lmpi -O3 -DMPI -fPIC -ffree-line-length-none -c data.f90 -lcfitsio`
 
@@ -36,7 +38,7 @@ The compilation script using `mpif90` compiler could look like:
 
 The compilation line below assumes that the MultiNest library is `libnest3` at `$multilib`:
 
-`mpif90 -o a.out params.o priors.o constants.o data.o random.o model.o recon.o like.o nestwrap.o main.o -lmpi -O3 -DMPI -fPIC -ffree-line-length-none -I$multimod -L/usr/lib -L$multilib -lnest3 -llapack -L$fitsio -lcfitsio`
+`mpif90 -o a.out params.o priors.o constants.o bol.o data.o random.o model.o recon.o like.o nestwrap.o main.o -lmpi -O3 -DMPI -fPIC -ffree-line-length-none -I$multimod -L/usr/lib -L$multilib -lnest3 -llapack -L$fitsio -lcfitsio`
 
 The `main.f90` defines the free parameters of the problem. Currently these are two for the black-hole/stellar mass relation and two for the PSD. The priors for each of these parameters are definedin the lines:
 
@@ -65,6 +67,8 @@ the MultiNest bayesian inference routines are called in the lines:
 the following line reads the MCMC chains produced by MultiNest to determine the median of parameters and their uncertainties, estimate confidence intervals for e.g. the black-hole mass vs stellar mass relation, etc.  
 
 `call readchains()`
+
+the python script plotfit.py contains function that read the output of the readchains subroutine and plot (i) the posterior distributions of the parameters and (ii) the best-fit black-hole vs stellar-mass relation and normalised excess variance vs X-ray luminosity relation. 
 
 The model that is fit to the observations is defined in `model.f90`:
 
